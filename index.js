@@ -18,7 +18,7 @@ function filterWordsByLength(str, num) {
     if (typeof str !== "string" || typeof num !== "number") {
         return "Incorrect type of data";
     }
-    
+
     return str.split(/\W+/).filter((word) => word.length > num);
 }
 
@@ -523,6 +523,7 @@ function areAnagrams(stringOne, stringTwo) {
 // ____________________________________________________________________________________________________
 
 //Task 21
+//Option 1
 class University {
     constructor() {
         this.students = [];
@@ -552,15 +553,53 @@ class University {
 
 const university = new University();
 
-university.addStudent(1, "JLeanne Graham", "Computer Science", "Practical React");
-university.addStudent(2, "Clementine Bauch", "Applied Mathematics", "Advanced Python");
-university.addStudent(3, "Ervin Howell", "Computer Science", "Practical React");
-university.addStudent(4, "Chelsey Dietrich", "Applied Mathematics", "Devops fundamentals");
+// university.addStudent(1, "JLeanne Graham", "Computer Science", "Practical React");
+// university.addStudent(2, "Clementine Bauch", "Applied Mathematics", "Advanced Python");
+// university.addStudent(3, "Ervin Howell", "Computer Science", "Practical React");
+// university.addStudent(4, "Chelsey Dietrich", "Applied Mathematics", "Devops fundamentals");
 
 // console.log(university.students);
 // console.log(university.getStudentById(2));
 // console.log(university.getStudentsByCourse("Practical React"));
 // console.log(university.getStudentsByFaculty("Computer Science"));
+
+//Option 2
+const uni = {
+    students: [],
+
+    addStudent(studentId, name, faculty, course) {
+        const student = { studentId, name, faculty, course };
+        this.students.push(student);
+    },
+
+    removeStudent(studentId) {
+        this.students = this.students.filter((student) => student.studentId !== studentId);
+    },
+
+    getStudentById(studentId) {
+        return this.students.find((student) => student.studentId === studentId);
+    },
+
+    getStudentsByCourse(course) {
+        return this.students.filter((student) => student.course === course);
+    },
+
+    getStudentsByFaculty(faculty) {
+        return this.students.filter((student) => student.faculty === faculty);
+    }
+}
+
+// uni.addStudent(1, "JLeanne Graham", "Computer Science", "Practical React");
+// uni.addStudent(2, "Clementine Bauch", "Applied Mathematics", "Advanced Python");
+// uni.addStudent(3, "Ervin Howell", "Computer Science", "Practical React");
+// uni.addStudent(4, "Chelsey Dietrich", "Applied Mathematics", "Devops fundamentals");
+
+// console.log(uni.students);
+// console.log(uni.getStudentById(2));
+// console.log(uni.getStudentsByCourse("Practical React"));
+// console.log(uni.getStudentsByFaculty("Computer Science"));
+// uni.removeStudent(2)
+// console.log(uni.students);
 
 // ____________________________________________________________________________________________________
 
