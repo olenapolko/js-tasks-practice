@@ -1,8 +1,7 @@
 // Task 1
 function findDifference(arr) {
     if (!Array.isArray(arr)) return "The function accepts only arrays.";
-    if (arr.some((element) => isNaN(element)))
-        return "All elements of the array should be numbers.";
+    if (arr.some((element) => isNaN(element))) return "All elements of the array should be numbers.";
     if (arr.length < 2) return 0;
     const sortedArr = [...arr].sort((a, b) => a - b);
     return sortedArr[sortedArr.length - 1] - sortedArr[0];
