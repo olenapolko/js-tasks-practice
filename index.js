@@ -4,7 +4,6 @@ function findDifference(arr) {
     if (arr.some((element) => isNaN(element)))
         return "All elements of the array should be numbers.";
     if (arr.length < 2) return 0;
-
     const sortedArr = [...arr].sort((a, b) => a - b);
     return sortedArr[sortedArr.length - 1] - sortedArr[0];
 }
@@ -19,7 +18,7 @@ function filterWordsByLength(str, num) {
     if (typeof str !== "string" || typeof num !== "number") {
         return "Incorrect type of data";
     }
-
+    
     return str.split(/\W+/).filter((word) => word.length > num);
 }
 
@@ -49,12 +48,14 @@ function findAverageValues(arr) {
         return "The function accepts only arrays with length bigger than 2.";
     }
 
-    return arr.reduce((averageValues, currValue, index) => {
+    const result = arr.reduce((averageValues, currValue, index) => {
         if (index < arr.length - 1) {
             averageValues.push((currValue + arr[index + 1]) / 2);
         }
         return averageValues;
     }, []);
+
+    return result;
 }
 
 // console.log(findAverageValues([2, -2, 2, -2, 2]));
@@ -132,14 +133,11 @@ const RemoveABC2 = (str) => typeof str === "string" ? str.replace(/[abc]/gi, "")
 // Task 6
 // Option 1
 function findUniqueElements(arr1, arr2) {
-    if (!Array.isArray(arr1) || !Array.isArray(arr2))
-        return "Function accepts only arrays.";
-    const uniqueElements = arr1
-        .concat(arr2)
-        .sort((a, b) => a - b)
-        .filter((elem, index, arr) => {
-            return arr.indexOf(elem) === index;
-        });
+    if (!Array.isArray(arr1) || !Array.isArray(arr2)) return "Function accepts only arrays.";
+    const uniqueElements = arr1.concat(arr2).sort((a, b) => a - b).filter((elem, index, arr) => {
+        return arr.indexOf(elem) === index;
+    });
+
     return uniqueElements;
 }
 
@@ -168,9 +166,7 @@ function findUniqueElements2(arr1, arr2) {
 //Task 7
 function swapKeysAndValues(obj) {
     if (typeof obj !== "object" || obj === null || Array.isArray(obj)) return "Invalid data type";
-    return Object.fromEntries(
-        Object.entries(obj).map(([key, value]) => [value, key])
-    );
+    return Object.fromEntries(Object.entries(obj).map(([key, value]) => [value, key]));
 }
 
 // console.log(swapKeysAndValues({red: "#FF0000", green: "#00FF00", white: "#FFFFFF"}));
@@ -196,7 +192,6 @@ function calculateDifference(items, insurance) {
 //Task 9
 function doesBrickFit(a, b, c, w, h) {
     if ([...arguments].some((item) => item <= 0 || typeof item !== "number")) return "Function accepts only positive numbers";
-
     if ((a <= w && b <= h) || (a <= h && b <= w)) return true;
     if ((a <= w && c <= h) || (a <= h && c <= w)) return true;
     if ((b <= w && c <= h) || (b <= h && c <= w)) return true;
@@ -224,6 +219,7 @@ function extractFileName2(filePath) {
     if (!filePath || typeof filePath !== "string") return "Function accepts only valid string paths";
     const splittedBySlashes = filePath.split("\\");
     const result = splittedBySlashes[splittedBySlashes.length - 1].split(".")[0];
+
     return result;
 }
 
@@ -287,10 +283,7 @@ function formatLine(str) {
     const emailRegex = /\S+@\S+\.\S+/g;
     const digitsRegex = /\d{4,}/g;
 
-    let modifiedStr = str
-        .replace(urlRegex, "[посилання заборонено]")
-        .replace(emailRegex, "[контакти заборонені]")
-        .replace(digitsRegex, "");
+    let modifiedStr = str.replace(urlRegex, "[посилання заборонено]").replace(emailRegex, "[контакти заборонені]").replace(digitsRegex, "");
 
     let result = modifiedStr.slice(0, 1).toUpperCase() + modifiedStr.slice(1);
 
@@ -495,11 +488,7 @@ const transformToCaesarCipher = (str, number) => {
     const ukrainianAlphabet = "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя";
     const englishAlphabet = "abcdefghijklmnopqrstuvwxyz";
 
-    const alphabet =
-        ukrainianAlphabet +
-        ukrainianAlphabet.toUpperCase() +
-        englishAlphabet +
-        englishAlphabet.toUpperCase();
+    const alphabet = ukrainianAlphabet + ukrainianAlphabet.toUpperCase() + englishAlphabet + englishAlphabet.toUpperCase();
 
     return str.split("").reduce((acc, item) => {
         if (!alphabet.includes(item)) {
